@@ -1,0 +1,6 @@
+1st Major issue:
+1. inconsistent data entry on the website, the metric used for the size of the home changes.
+2. Error in price entry. e.g., home for 1_250_000 listed as 1_250_000_000. 875_000_000 -> 8_750_000
+3. sponsored properties have slightly different html structure, however they are a minority group.
+4. Data scraping inconsitencies is a result of failed threads, due to SSL blocks and sponsored listing not captured.
+5. Due to above-mentioned issues, decision between removing outliers vs. correcting the errors. removing outliers presents elegant results, however alot of data is removed and this introduces the statistical significance of the resulting data. correcting the errors is diffcult because they are not consistent, some errors include additional numbers added to the front or back of various values(bed,bath,garage).Missing sqm is calculated using price and the average sqm for the province.
