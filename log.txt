@@ -4,3 +4,16 @@
 3. sponsored properties have slightly different html structure, however they are a minority group.
 4. Data scraping inconsitencies is a result of failed threads, due to SSL blocks and sponsored listing not captured.
 5. Due to above-mentioned issues, decision between removing outliers vs. correcting the errors. removing outliers presents elegant results, however alot of data is removed and this introduces the statistical significance of the resulting data. correcting the errors is diffcult because they are not consistent, some errors include additional numbers added to the front or back of various values(bed,bath,garage).Missing sqm is calculated using price and the average sqm for the province.
+
+NN issues:
+1. The model when given the inputs (price,bed,bath,sqm,garage) fails to consitently get an accuracy and f1 scor aboe 50% and 40% respectively despite varying model complexity and hyperparameter tuning. This issue is a result of the goal of the model which is to learn and price per sqm mapping, however, provinces with similar price per sqm are indistinguishable from each other. This suggests a data isses rather than a model issue. We explicitly give the model price per sqm as an input.
+
+
+Positional encoding
+SA width: ~1800km
+SA Height: ~1200km
+
+1. Suppose that South Africa is in euclidean space with the centre of South Africa at the origin. We want to find the centre of each province and use that as the mean for a 2d guassian from which the position of a lising will be sampled from, translate South Africa so that it lies in the positive quadrant and change to a basis with more variance along the width.
+
+Getting the centres:
+Consider the approximate width and height of south Africa, we treat the distances as pixels on the map, thus the pixel postion (900,600) is the centre of the map. We centre this at the origin. Since we want all the positional encoding vectors to be positive, we translate the map into the top-right quadrant. We translate the map centre by (900,600). The centres of each province were eyeballed. After the transformations, we get positive positional encoding which preserves approximate spatial distances between listings in different provinces.
